@@ -61,11 +61,7 @@ public class PDFFontTable extends FontTable {
                 e.setWritten(true);
 
                 FontIncluder fontIncluder = null;
-                if (PDFFontIncluder.isStandardFont(e.getFont())) {
-                    embed = false;
-                }
-
-                if (embed) {
+                if (embed && !PDFFontIncluder.isStandardFont(e.getFont())) {
                     if (embedAs.equals(FontConstants.EMBED_FONTS_TYPE3)) {
                         fontIncluder = new PDFFontEmbedderType3(context, pdf, e
                                 .getReference(), tracker);

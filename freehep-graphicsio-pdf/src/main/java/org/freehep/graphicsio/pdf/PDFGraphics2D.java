@@ -767,8 +767,9 @@ public class PDFGraphics2D extends AbstractVectorGraphicsIO implements
 		AffineTransform at = new AffineTransform(1, 0, 0, 1, x, y);
 		// transform for font
 		at.concatenate(getFont().getTransform());
-		// mirror the matrix
-		at.scale(1, -1);
+		if (PDFFontIncluder.isStandardFont(fontTable.substituteFont(getFont())))
+			// mirror the matrix
+			at.scale(1, -1);
 
 		// write transform
 		writeTransform(at);
